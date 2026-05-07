@@ -3,10 +3,12 @@
 #include <strings.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <unistd.h>
 
 int main(void)
 {
     int i;
+    int j;
     // test strlen
     printf("*********** *********** strlen *********** ***********\n");
     // test strlen
@@ -160,7 +162,7 @@ int main(void)
             printf("************ ERROR ERROR ERROR ************\n");
         }
         else
-            printf("#1 bzero test %i ******* OK ******* no-diff \n", i);
+            printf("#1 bzero str %i ******* OK ******* no-diff \n", i);
     }
     // until 10 because after it is undefined behavior
     for (i = 0; i < 10; i++)
@@ -173,23 +175,23 @@ int main(void)
             printf("************ ERROR ERROR ERROR ************\n");
         }
         else
-            printf("#2 bzero test %i ******* OK ******* no-diff \n", i);
+            printf("#2 bzero int %i ******* OK ******* no-diff \n", i);
     }
-    // test memcopy
+    // test memcpy
     printf("*********** *********** memcpy *********** ***********\n");
     char    memcpy_src_str[10] = "hello amy";
     char    memcpy_dst_str[20] = "xxxxxxxxx";
     char    memcpy_src_str_official[10] = "hello amy";
-    char    memcpy_dst_str_official[20] = "xxxxxxxxx";
+    char    memcpy_dst_str_official[20] = "pppppppppppp";
 
     int     memcpy_src_arr[10] = {1,2,3,4,5,6,7,8,9,10};
     int     memcpy_dst_arr[20] = {0,0,0,0,0,0,0,0,0,0,0,0};
     int     memcpy_src_arr_official[10] = {1,2,3,4,5,6,7,8,9,10};
-    int     memcpy_dst_arr_official[20] = {0,0,0,0,0,0,0,0,0,0,0,0};
+    int     memcpy_dst_arr_official[20] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
     ft_memcpy(memcpy_dst_str, memcpy_src_str, 10);
     memcpy(memcpy_dst_str_official, memcpy_src_str_official, 10);
-    for (i = 0; i < 11 ; i++)
+    for (i = 0; i < 10 ; i++)
     {
         if (memcpy_dst_str[i] != memcpy_dst_str_official[i])
         {
@@ -199,18 +201,45 @@ int main(void)
             printf("************ ERROR ERROR ERROR ************\n");
         }
         else
-            printf("#1 memcpy test %i ******* OK ******* no-diff \n", i);
+            printf("#1 memcpy str %i ******* OK ******* no-diff \n", i);
     }
-    for (i = 0; i < 11 ; i++)
+    ft_memcpy(memcpy_dst_arr, memcpy_src_arr, sizeof(memcpy_src_arr));
+//    printf("should be 4 bytes * 10 elements >>> %lu\n", sizeof(memcpy_src_arr));
+    memcpy(memcpy_dst_arr_official, memcpy_src_arr_official, sizeof(memcpy_src_arr_official));
+
+    for (i = 0; i < 10 ; i++)
     {
         if (memcpy_dst_arr[i] != memcpy_dst_arr_official[i])
         {
             printf("************ ERROR ERROR ERROR ************\n");
-            printf("ft_memcpy test arr | '%i'     >> ... %c\n", i, memcpy_dst_arr[i]);
-            printf("memcpy  test  arr  | '%i'     >> ... %c\n", i, memcpy_dst_arr_official[i]);
+            printf("ft_memcpy test arr | '%i'     >> ... %i\n", i, memcpy_dst_arr[i]);
+            printf("memcpy  test  arr  | '%i'     >> ... %i\n", i, memcpy_dst_arr_official[i]);
             printf("************ ERROR ERROR ERROR ************\n");
         }
         else
-            printf("#2 memcpy test %i ******* OK ******* no-diff \n", i);
+            printf("#2 memcpy int %i ******* OK ******* no-diff \n", i);
+    }
+    // test memmove
+    printf("*********** *********** memmove *********** ***********\n");
+
+
+    for (i = 0; i <= 5 ; i++)
+    {
+        char    dst_memmove[10] = "abcdefgh";
+        char    src_memmove[10] = "abcdefgh";
+        memmove(dst_memmove + 3, dst_memmove + i, i);
+        ft_memmove(src_memmove + 3, src_memmove + i, i);
+        for (j = 0; j < 10; j++)
+        {
+            if(dst_memmove[j] != src_memmove[j])
+            {
+                printf("************ ERROR ERROR ERROR ************\n");
+                printf("ft_memmove test arr | i='%i'  j='%i'     >> ... %i\n",i, j, src_memmove[j]);
+                printf("memmove  test  arr  | i='%i'  j='%i'     >> ... %i\n",i, j, dst_memmove[j]);
+                printf("************ ERROR ERROR ERROR ************\n");
+            }
+            else
+                printf("#1 memmove i:%i j:%i ******* OK ******* no-diff \n", i, j);
+        }
     }
 }
