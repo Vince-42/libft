@@ -4,7 +4,7 @@ SOURCE = ft_strlen.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_ispr
 
 OBJ = $(SOURCE:.c=.o)
 
-// CC = cc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror 
 
