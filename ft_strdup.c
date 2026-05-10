@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vleroy <vleroy@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/10 13:12:49 by vleroy            #+#    #+#             */
-/*   Updated: 2026/05/10 13:13:49 by vleroy           ###   ########.fr       */
+/*   Created: 2026/05/10 12:35:42 by vleroy            #+#    #+#             */
+/*   Updated: 2026/05/10 12:36:17 by vleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c);
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_tolower(int c)
+char	*ft_strdup(char *src);
+
+char	*ft_strdup(char *src)
 {
-	int	res;
+	int		str_size;
+	int		i;
+	char	*new_str;
 
-	res = c;
-	if (c >= 65 && c <= 90)
-		res = c + 32;
-	return ((unsigned char)res);
+	i = 0;
+	str_size = ft_strlen(src);
+	new_str = malloc(sizeof(char) * str_size + 1);
+	while (src[i])
+	{
+		new_str[i] = src[i];
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
 }

@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vleroy <vleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 14:19:32 by vleroy            #+#    #+#             */
-/*   Updated: 2026/05/10 12:24:38 by vleroy           ###   ########.fr       */
+/*   Created: 2026/05/10 12:54:31 by vleroy            #+#    #+#             */
+/*   Updated: 2026/05/10 14:32:40 by vleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-t_size	ft_strlcpy(char *dst, const char *src, t_size size);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-t_size	ft_strlcpy(char *dst, const char *src, t_size size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	t_size	size_str;
 	t_size	i;
+	char	*new_substr;
+	t_size	alloc_size;
 
+	size_str = ft_strlen(s);
+	alloc_size = len + 1;
 	i = 0;
-	if (!src)
-		return (0);
-	if (size == 0)
-		return (ft_strlen(src));
-	while (src[i] && i < size - 1)
+	new_substr = malloc(alloc_size);
+	if (new_substr == NULL)
+		return (NULL);
+	while (i < len && (start + i) < size_str)
 	{
-		dst[i] = src[i];
+		new_substr[i] = s[start + i];
 		i++;
 	}
-	if (size > 0)
-		dst[i] = '\0';
-	return (ft_strlen(src));
+	new_substr[i] = '\0';
+	return (new_substr);
 }
