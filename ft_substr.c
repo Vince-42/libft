@@ -23,7 +23,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	t_size	alloc_size;
 
 	size_str = ft_strlen(s);
-	alloc_size = len + 1;
+	if (start < size_str )
+		alloc_size = len + 1;
+	else
+		alloc_size = 0;
 	i = 0;
 	new_substr = malloc(alloc_size);
 	if (new_substr == NULL)
