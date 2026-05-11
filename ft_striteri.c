@@ -34,7 +34,7 @@ void ft_striteri(char *s, void (*f)(unsigned int, char*))
 
     i = 0;
     str_totalsize = ft_strlen(s);
-    new_str = ft_calloc(str_totalsize + 1, sizeof(char));
+    new_str = s;
     while (i < str_totalsize)
     {
         f(i,&s[i]);
