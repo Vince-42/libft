@@ -29,7 +29,7 @@ static int ft_isneg(int n)
         return (0);
 }
 
-void    ft_reverse(char *str)
+static void    ft_reverse(char *str)
 {
     char temp;
     int start;
@@ -54,7 +54,6 @@ char    *ft_itoa(int n)
     char *str;
     char res;
 
-    res = 0;
     i = 0;
     number = n;
     str = ft_calloc(10, sizeof(char));
