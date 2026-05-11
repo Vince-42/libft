@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 #define GREEN "\033[32m"
 #define RED "\033[31m"
@@ -994,4 +995,66 @@ int main(void)
     test_ft_split_extra();
 
     ft_split("hello world france", ' ');
+    // test ft_itoa
+    printf("*********** *********** ft_itoa *********** ***********\n");
+    char *str_itoa;
+
+    str_itoa = ft_itoa(123);
+    printf("should be 123 >> %s\n", str_itoa);
+    free(str_itoa);
+    
+    str_itoa = ft_itoa(-123);
+    printf("should be -123 >> %s\n", str_itoa);
+    free(str_itoa);
+    
+    str_itoa = ft_itoa(-0);
+    printf("should be 0 >> %s\n", str_itoa);
+    free(str_itoa);
+    
+    str_itoa = ft_itoa(INT32_MAX);
+    printf("should be %i >> %s\n", INT32_MAX, str_itoa);
+    free(str_itoa);
+
+    str_itoa = ft_itoa(INT32_MIN);
+    printf("should be %i >> %s\n", INT32_MIN, str_itoa);
+    free(str_itoa);
+
+    // test ft_putnbr_fd
+    printf("*********** *********** ft_putnbr_fd *********** ***********\n");
+    ft_putnbr_fd(123, 1);
+    printf("\n");
+    ft_putnbr_fd(-123, 1);
+    printf("\n");
+    ft_putnbr_fd(0, 1);
+    printf("\n");
+    ft_putnbr_fd(INT32_MAX, 1);
+    printf("\n");
+    ft_putnbr_fd(INT32_MIN, 1);
+    printf("\n");
+
+    // test LIST //
+    // test ft_lstnew
+    printf("*********** *********** TEST LIST *********** ***********\n");
+     printf("*********** *********  ft_new LIST ********* ***********\n");
+    t_list *txt_list;
+    t_list *int_list;
+    t_list *solo_intlist;
+
+
+    int int_arr[6] = {1,2,3,4,5,6};
+    char *list_str = "hello world";
+    int int_solo = 9;
+
+    txt_list = ft_lstnew(list_str);
+    printf("tst_list content >> '%s'\n", (char *)txt_list->content);
+    printf("tst_list next >> '%p'\n", txt_list->next);
+
+    int_list = ft_lstnew(int_arr);
+    for (i = 0; i < 6; i++)
+        printf("int_list content [%i] >> '%i'\n",i, ((int *)int_list->content)[i]);
+    printf("int_list next >> '%p'\n", int_list->next);
+
+    solo_intlist = ft_lstnew(&int_solo);
+    printf("solo_intlist content >> '%i'\n", ((int *)solo_intlist->content)[0]);
+    printf("solo_intlist next >> '%p'\n", solo_intlist->next);
 }
