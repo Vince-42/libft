@@ -26,6 +26,7 @@ stackoverflow & google was used for syntax and variable access questions.
 AI was used to help understand syntax for maker file, to help creating some test cases & to assist in the detailed library description part of this README.
 man was used to reproduce function logic.
 Book - C++ : Programming in C.
+This repository is available at https://github.com/Vince-42/libft
 
 # Detailed library description
 
