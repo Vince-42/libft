@@ -39,11 +39,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		last;
 	char	*new_strim;
 	int		allocsize;
-	int		buf;
 
 	i = 0;
 	last = ft_strlen(s1) - 1;
-	buf = 0;
 	if (!s1 || !set)
 		return (ft_calloc(1, 1));
 	while (ft_checkin(s1[i], set))
