@@ -6,7 +6,7 @@
 /*   By: vleroy <vleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 12:22:40 by vleroy            #+#    #+#             */
-/*   Updated: 2026/05/10 14:32:37 by vleroy           ###   ########.fr       */
+/*   Updated: 2026/05/12 16:18:10 by vleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ typedef unsigned long	t_size;
 
 typedef struct s_list
 {
-    void    *content;
-    struct s_list *next;
-} t_list;
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
-t_list  *ft_lstnew(void *content);
-void    ft_lstadd_front(t_list **lst, t_list *new);
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
@@ -61,7 +61,7 @@ t_size	ft_strlcpy(char *dst, const char *src, t_size size);
 * The substring starts at index ’start’ and has a
 * maximum length of ’len’.
 */
-char    *ft_substr(char const *s, unsigned int start, t_size len);
+char	*ft_substr(char const *s, unsigned int start, t_size len);
 /**
  * Allocates memory (using malloc(3)) and returns a
  * new string, which is the result of concatenating
@@ -94,13 +94,12 @@ char	*ft_strtrim(char const *s1, char const *set);
  * @return NULL if any allocation fails.
  */
 char	**ft_split(char const *s, char c);
-char    *ft_itoa(int n);
-char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
-void    ft_striteri(char *s, void (*f)(unsigned int, char*));
-void    ft_putchar_fd(char c, int fd);
-void    ft_putstr_fd(char *s, int fd);
-void    ft_putendl_fd(char *s, int fd);
-void    ft_putnbr_fd(int n, int fd);
-
+char	*ft_itoa(int n);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
