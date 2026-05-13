@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
 
@@ -40,12 +39,15 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*new_strim;
 	int		allocsize;
 
+
+	if (!s1 || !set)
+		return (NULL);
 	i = 0;
 	last = ft_strlen(s1) - 1;
-	if (!s1 || !set)
-		return (ft_calloc(1, 1));
 	while (ft_checkin(s1[i], set))
 		i++;
+	if (s1[i] == '\0')
+		return (ft_calloc(1,1));
 	while (ft_checkin(s1[last], set))
 		last--;
 	allocsize = last - i + 1;
